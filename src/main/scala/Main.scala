@@ -2,6 +2,7 @@ import book.{ Book }
 import vehicle.{ CarModel, Year, Car, F1Car, Bike }
 import shape.{ Shape }
 import being._
+import phantom._
 
 object Main extends App {
   val book = new Book("Scala Basics", 139182739)
@@ -25,6 +26,12 @@ object Main extends App {
 
   val something: Being[Int] = Something(12).map(x => x * 2)
   val nope: Int = Nothingness.getOrElse(12)
+
+  val pkFire: Pokemon[Fire] = new Pokemon("Charmander", Attack("Fire Beam"))
+  val pkElectric: Pokemon[Electric] = new Pokemon("Pikachu", Attack("Electric Blast"))
+
+  val pkWater: Pokemon[Water] = new Pokemon("Squirtle", Attack("Water Bubbles"))
+  val pkLeaf: Pokemon[Leaf] = new Pokemon("Bulbasaur", Attack("Leaf Whip"))
 
   println("-----------------")
   book.printInfo
@@ -52,5 +59,11 @@ object Main extends App {
   println("-----------------")
   println(something.toString)
   println(nope.toString())
+  println("-----------------")
+  println("Fire VS Electric")
+  Battle.fireVsElectric(pkFire, pkElectric)
+  println("-----------------")
+  println("Water VS Leaf")
+  Battle.waterVsLeaf(pkWater, pkLeaf)
   println("-----------------")
 }
