@@ -1,0 +1,3 @@
+# Scala Basic Concepts
+
+## Playing with Scala basic concepts...
