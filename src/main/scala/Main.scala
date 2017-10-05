@@ -3,6 +3,9 @@ import vehicle.{ CarModel, Year, Car, F1Car, Bike }
 import shape.{ Shape }
 import being._
 import phantom._
+import implicits.Reversed._
+import implicits.ToJSON._
+import person.{ Person, Address }
 
 object Main extends App {
   val book = new Book("Scala Basics", 139182739)
@@ -33,6 +36,9 @@ object Main extends App {
   val pkWater: Pokemon[Water] = new Pokemon("Squirtle", Attack("Water Bubbles"))
   val pkLeaf: Pokemon[Leaf] = new Pokemon("Bulbasaur", Attack("Leaf Whip"))
 
+  val address = Address("Los Angeles", "West Coast")
+  val person = Person("Sebastian", address)
+
   println("-----------------")
   book.printInfo
   println("-----------------")
@@ -44,21 +50,21 @@ object Main extends App {
   f1Car.race()
   bike.race()
   println("-----------------")
-  println(Shape.filterRecs(shapes).toString())
+  println(Shape.filterRecs(shapes))
   println(shapes.filter((s: Shape) => s.area > 30))
   println("-----------------")
   println("Uncurried")
-  println(addUnc1(5).toString())
+  println(addUnc1(5))
   println("-----------------")
   println("Curried")
-  println(addCu3(3)(4)(5).toString())
+  println(addCu3(3)(4)(5))
   println("-----------------")
   val head :: tail = List(1,2,3)
-  println(head.toString())
-  println(tail.toString())
+  println(head)
+  println(tail)
   println("-----------------")
   println(something.toString)
-  println(nope.toString())
+  println(nope)
   println("-----------------")
   println("Fire VS Electric")
   Battle.fireVsElectric(pkFire, pkElectric)
@@ -66,4 +72,9 @@ object Main extends App {
   println("Water VS Leaf")
   Battle.waterVsLeaf(pkWater, pkLeaf)
   println("-----------------")
+  println("Implicit Invocation: toRList")
+  println("You know what I am talking about!".toRList())
+  println("-----------------")
+  println("Implicit Invocation: toJSON")
+  println(person.toJSON)
 }
