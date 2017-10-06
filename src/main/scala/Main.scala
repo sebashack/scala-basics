@@ -28,6 +28,8 @@ object Main extends App {
   def addCu3_(x: Int) = (y: Int) => (z: Int) => x + y + z
 
   val something: Being[Int] = Something(12).map(x => x * 2)
+  val orSomething: AnyVal = something.getOrElse(0.123123123)
+
   val nope: Int = Nothingness.getOrElse(12)
 
   val pkFire: Pokemon[Fire] = new Pokemon("Charmander", Attack("Fire Beam"))
@@ -63,7 +65,8 @@ object Main extends App {
   println(head)
   println(tail)
   println("-----------------")
-  println(something.toString)
+  println(something)
+  println(orSomething)
   println(nope)
   println("-----------------")
   println("Fire VS Electric")
