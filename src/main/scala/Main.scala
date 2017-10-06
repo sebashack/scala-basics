@@ -26,6 +26,7 @@ object Main extends App {
 
   def addCu3(x: Int)(y: Int)(z: Int): Int = x + y + z
   def addCu3_(x: Int) = (y: Int) => (z: Int) => x + y + z
+  def addCu2 = addCu3(10) _
 
   val something: Being[Int] = Something(12).map(x => x * 2)
   val orSomething: AnyVal = something.getOrElse(0.123123123)
